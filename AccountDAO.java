@@ -10,10 +10,12 @@ import la.bean.AccountBeans;
 
 public class AccountDAO {
     // データベース接続に使用する情報
-    final String jdbcId = "root";
-    final String jdbcPass = "password";
-    final String jdbcUrl = "jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=JST";
-
+   Class.forName("org.postgresql.Driver");
+			String url = "*********";
+			String user = "********";
+			String pass = "*******";
+			//データベースの接続
+			con = DriverManager.getConnection(url, user, pass);
     // ログインアカウントを探す
     public AccountBeans findAccount(AccountBeans ab) {
 
