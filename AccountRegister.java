@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AccountRegisterDAO;
-import model.AccountBeans;
+import la.dao.AccountRegisterDAO;
+import la.bean.AccountBeans;
 
 /**
  * Servlet implementation class AccountRegister
