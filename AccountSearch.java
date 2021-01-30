@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AccountDAO;
-import model.AccountBeans;
+import la.dao.AccountDAO;
+import la.bean.AccountBeans;
 
 /**
  * Servlet implementation class AccountDAO2
