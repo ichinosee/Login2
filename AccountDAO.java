@@ -9,13 +9,12 @@ import java.sql.SQLException;
 import la.bean.AccountBeans;
 
 public class AccountDAO {
-    // データベース接続に使用する情報
-   Class.forName("org.postgresql.Driver");
-			String url = "*********";
-			String user = "********";
-			String pass = "*******";
-			//データベースの接続
-			con = DriverManager.getConnection(url, user, pass);
+	private Connection con;
+
+	public AccountDAO() throws DAOException {
+		getConnection();
+	}
+
     // ログインアカウントを探す
     public AccountBeans findAccount(AccountBeans ab) {
 
@@ -23,7 +22,7 @@ public class AccountDAO {
         AccountBeans returnAb = new AccountBeans();
 
         // データベースへ接続
-        try (Connection con = DriverManager.getConnection(jdbcUrl, jdbcId, jdbcPass)) {
+        try  {
 
             String sql = "SELECT loginId, pass, name, roleId FROM account WHERE loginId = ? AND pass = ?";
             PreparedStatement ps= con.prepareStatement(sql);
@@ -50,4 +49,28 @@ public class AccountDAO {
         }
         return returnAb;
     }
+
+
+    private void getConnection() throws DAOException {
+		try {
+			//JDBCドライバの登録
+			Class.forName("org.postgresql.Driver");
+			//JDBCドライバの登録
+			String url = "*********";
+			String user = "*********";
+			String pass = "*********";
+			//データベースの接続
+			con = DriverManager.getConnection(url, user, pass);
+		} catch (Exception e) {
+			throw new DAOException("接続に失敗しました");
+		}
+	}
+
+	private void close() throws SQLException {
+		if (con != null) {
+			con.close();
+			con = null;
+		}
+	}
+
 }
